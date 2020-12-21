@@ -116,6 +116,13 @@ class Post extends Database
     return $query_attachment;
   }
 
+  public function get_post_datatable()
+  {
+    $query = "SELECT * FROM `post`";
+    $query_attachment = mysqli_query($this->get_connection(), $query);
+    return $query_attachment;
+  }
+
   public function get_post()
   {
     $query = "SELECT *, `post`.`created` AS `created_post` FROM `post` JOIN `admin` ON `post`.`admin_id` = `admin`.`admin_id` ORDER BY `post_id` DESC LIMIT 0, 20";

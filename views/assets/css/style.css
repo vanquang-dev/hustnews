@@ -253,22 +253,8 @@ ul {
     cursor: pointer;
 }
 
-.main-post {
-    margin: -60px 30px 0;
-    z-index: 2;
-    position: relative;
-    border-radius: 6px;
-    padding: 30px 60px;
-    background: #fff;
-    box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.22);
-}
 .main-post a {
     color: #242424;
-}
-.post-detail {
-    width: 100%;
-    height: auto;
-    margin-bottom: 80px;
 }
 .footer {
     width: 98%;
@@ -301,14 +287,7 @@ ul {
     border-radius: 4px;
     background: linear-gradient(90deg, rgb(162, 87, 211) 0%, rgba(247, 122, 222, 1) 100%);
 }
-.main-post {
-    margin: -60px 30px 0;
-    z-index: 2;
-    position: relative;
-    border-radius: 6px;
-    padding: 30px 60px;
-    background: #fff;
-    box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.22)
+box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.22)
 }
 table {
     width: 100%;
@@ -856,4 +835,29 @@ div#detail span {
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     line-height: 40px;
+}
+.datatable {
+    width: 100%;
+    margin: 0 auto;
+    z-index: 2;
+    position: relative;
+    border-radius: 6px;
+    padding: 30px 60px;
+    background: #fff;
+    box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.22);
+}
+
+.datatable h3 {
+    margin-bottom: 50px;
+}
+.datatable label {
+    color: #494949;
+}
+.datatable select, .datatable input {
+    border: 1px #c3c3c3 solid;
+    padding: 5px 10px;
+    border-radius: 6px;
+}
+.datatable table {
+    padding-top: 25px;
 }
