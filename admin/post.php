@@ -67,7 +67,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script src="../views/assets/js/admin_post.js"></script>
+    <script src="../views/assets/js/admin/post.js"></script>
 </body>
 
 </html>

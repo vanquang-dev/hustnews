@@ -18,11 +18,6 @@
 	                    </div>
 	                </div>
 	                </a>
-	                <a href="hust">
-		                <div class="menu-content" id="news-hust">
-		                    <i class="gg-coffee" style="margin-left: 0;"></i> Hust
-		                </div>
-	                </a>
 	                <div class="menu-content">
 	                    <i class="gg-calendar-due"></i> Liên hệ
 	                </div>
