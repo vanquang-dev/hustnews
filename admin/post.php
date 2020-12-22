@@ -24,7 +24,7 @@
                 <div class="main-post" style="margin: 0">
                     <button class="button-custom" style="border-radius: 0;">Thêm bài viết</button>
                     <h3>Các bài báo mới nhất của Dân Trí</h3>
-                    <div id="dantri">
+                    <div id="dantri" style="height: 476px; overflow-y: auto;">
                         <?php include_once 'model/dantri.php'; ?>
                     </div>
                 </div>

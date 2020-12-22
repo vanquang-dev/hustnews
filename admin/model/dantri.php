@@ -2,7 +2,7 @@
 	include_once '../api/config/simple_html_dom.php';
 	$html_dantri = file_get_html("https://dantri.com.vn/");
     $list = $html_dantri->find('h2[class=news-item__title] a' );
-    echo "<table>
+    echo "<table class='table'>
     <tr id='title'><th>Tên bài viết</th><th id='like'>Tuỳ chọn</th></tr>";
     foreach ( $list as $item  ) {
 

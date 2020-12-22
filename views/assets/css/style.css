@@ -861,3 +861,9 @@ div#detail span {
 .datatable table {
     padding-top: 25px;
 }
+.modal-content {
+    z-index: 1500;
+}
+.image_summernote img {
+    width: 100%;
+}

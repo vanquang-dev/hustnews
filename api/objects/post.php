@@ -75,15 +75,15 @@ class Post extends Database
     return mysqli_query($this->get_connection(), $query);
   }
 
-  public function add_hust() {
+  public function add_post() {
     // query
-    $query = "INSERT INTO `hust` (
+    $query = "INSERT INTO `post` (
     `admin_id`, `title`, `description`, `category`, `detail_description`, `image`
     ) VALUES (
     '".$this->admin_id."',
     '".$this->title."',
     '".$this->description."',
-    '".$this->category."',
+    'xã hội',
     '".$this->detail_description."',
     '".$this->image."'
     )";
@@ -145,13 +145,6 @@ class Post extends Database
     return mysqli_fetch_array($query_attachment);
   }
 
-  // get detail post
-  public function get_post_hust()
-  {
-    $query = "SELECT *, `hust`.`created` AS `created_post` FROM `hust` JOIN `admin` ON `hust`.`admin_id` = `admin`.`admin_id` WHERE `post_id` = ".$this->post_id;
-    $query_attachment = mysqli_query($this->get_connection(), $query);
-    return mysqli_fetch_array($query_attachment);
-  }
 
   // get detail post
   public function get_post_popular()
@@ -168,17 +161,29 @@ class Post extends Database
     return $row;
   }
 
-  public function get_hust()
-  {
-    $query = "SELECT *, `hust`.`created` AS `created_post` FROM `hust` JOIN `admin` ON `hust`.`admin_id` = `admin`.`admin_id` ORDER BY `post_id` DESC LIMIT 0, 20";
-    $query_attachment = mysqli_query($this->get_connection(), $query);
-    return $query_attachment;
-  }
-
   public function get_post_docs() {
     $query = "SELECT *, `post`.`created` AS `created_post` FROM `post` JOIN `admin` ON `post`.`admin_id` = `admin`.`admin_id` WHERE `category`='".$this->category."' ORDER BY `post_id` DESC LIMIT 0, 3";
     $query_attachment = mysqli_query($this->get_connection(), $query);
     return $query_attachment;
+  }
+
+  public function get_update() {
+    $query = "SELECT * FROM `post` WHERE `post_id`= ".$this->post_id;
+    $query_attachment = mysqli_query($this->get_connection(), $query);
+    $row = mysqli_fetch_array($query_attachment);
+    return $row;
+  }
+
+  public function update() {
+    $query = "UPDATE `post` SET `title` = '".$this->title."', `description` = '".$this->description."', `detail_description` = '".$this->detail_description."' WHERE `post_id`= ".$this->post_id;
+    $query_attachment = mysqli_query($this->get_connection(), $query);
+    return $query_attachment;
+  }
+  // delete post
+  function destroy() {
+    // query
+    $query = "DELETE FROM `post` WHERE `post_id` = ".$this->post_id;
+    return mysqli_query($this->get_connection(), $query);
   }
 }
 ?>

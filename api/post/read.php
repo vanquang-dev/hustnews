@@ -35,15 +35,16 @@ $sql.=" ORDER BY ".$col[$request['order'][0]['column']]."   ".$request['order'][
 $query=mysqli_query($con,$sql);
 
 $data=array();
-
+$i = 1;
 while($row=mysqli_fetch_array($query)){
     $subdata=array();
-    $subdata[]=$row[0]; 
+    $subdata[]=$i; 
     $subdata[]=$row[2]; 
     $subdata[]='<div style="background: url('.$row[6].') center center / cover; width:100px; height:100px;"></div>';
     $subdata[]=$row[7]; 
-    $subdata[]='<br><button type="button" id="getEdit" class="btn btn-primary" data-toggle="modal" data-target="#myModal" data-id="'.$row[0].'"><i class="glyphicon glyphicon-pencil">&nbsp;</i>Sửa</button><button type="button" id="delete" class="btn btn-danger" data-toggle="modal" data-target="#myModal" data-id="'.$row[0].'" style="margin-top:5px;"><i class="glyphicon glyphicon-trash">&nbsp;</i>Xóa</button>';
+    $subdata[]='<br><a id="getEdit" class="btn btn-primary" href="update.php?id='.$row[0].'"><i class="glyphicon glyphicon-pencil">&nbsp;</i>Sửa</a><button type="button" onclick = "destroy('.$row[0].')" class="btn btn-danger" style="margin-top:5px;"><i class="glyphicon glyphicon-trash">&nbsp;</i>Xóa</button>';
     $data[]=$subdata;
+    $i++;
 }
 
 $json_data=array(

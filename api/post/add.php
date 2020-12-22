@@ -21,67 +21,42 @@
 	error_reporting(0);
 	$urll = parse_url($url);
 	$host = $urll['host'];
-	if ($host == 'dantri.com.vn') {
-	    $html = file_get_html($url);
-	    $title = $html->find("meta[name=twitter:title]", 0)->content;
-	    $image = $html->find("meta[name=twitter:image]",0)->content;
-	    $description = $html->find("meta[name=twitter:description]",0)->content;
-	    $category = $html->find('ul[class=dt-breadcrumb] a',1)->innertext;
-	    $time = $html->find("span[dt-news__time]",0)->innertext;
-	    $detail_description = $html->find("div[class=dt-news__content]" ,0)->innertext;
 
-	    $tag = $html->find("div[class=news-tag]" ,0)->innertext;
-	    $author = $html->find("p[style=text-align:right]" ,0)->innertext;
-	    $title = str_replace('\\','',$title);
-	    $detail_description = str_replace(array($tag,$author),'',$detail_description);
-	    $detail_description = str_replace($figcaption_array,'',$detail_description);
-	    $description = str_replace(array("(Dân trí) - "),'',$description);
-	    $title = str_replace(array('"',"'","&quot;"),'',$title);
+    $html = file_get_html($url);
+    $title = $html->find("meta[name=twitter:title]", 0)->content;
+    $image = $html->find("meta[name=twitter:image]",0)->content;
+    $description = $html->find("meta[name=twitter:description]",0)->content;
+    $category = $html->find('ul[class=dt-breadcrumb] a',1)->innertext;
+    $time = $html->find("span[dt-news__time]",0)->innertext;
+    $detail_description = $html->find("div[class=dt-news__content]" ,0)->innertext;
 
-	    $admin_id = $_SESSION['admin_id'];
-		
-		// add value input to obj
-		$post->admin_id($admin_id);
-		$post->image($image);
-		$post->title($title);
-		$post->description($description);
-		$post->category($category);
-		$post->detail_description(trim($detail_description));
-		// add post
-		$post->add();
-		$check_category = $post->check_category();
-		if ($check_category == 0) {
-			if ($category != '') {
-				$post->add_category();
-			}
+    $tag = $html->find("div[class=news-tag]" ,0)->innertext;
+    $author = $html->find("p[style=text-align:right]" ,0)->innertext;
+    $title = str_replace('\\','',$title);
+    $detail_description = str_replace(array($tag,$author),'',$detail_description);
+    $detail_description = str_replace($figcaption_array,'',$detail_description);
+    $description = str_replace(array("(Dân trí) - "),'',$description);
+    $title = str_replace(array('"',"'","&quot;"),'',$title);
+
+    $admin_id = $_SESSION['admin_id'];
+	
+	// add value input to obj
+	$post->admin_id($admin_id);
+	$post->image($image);
+	$post->title($title);
+	$post->description($description);
+	$post->category($category);
+	$post->detail_description(trim($detail_description));
+	// add post
+	$post->add();
+	$check_category = $post->check_category();
+	if ($check_category == 0) {
+		if ($category != '') {
+			$post->add_category();
 		}
-		http_response_code(200);
-		echo json_encode(array('code' => 200));
-	    
-	} else if ($host == 'www.hust.edu.vn') {
-		$html = file_get_html($url);
-		$title = $html->find("h3[class=header-title] span", 0)->innertext;
-	    $image = $html->find("div[class=journal-content-article] img",0)->src;
-	    $image = preg_replace('/[\/]documents[\/]/','https://www.hust.edu.vn/documents/',$image);
-	    $description = $html->find("div[class=journal-content-article] em",0)->innertext;
-	    $category = 'Hust';
-	    $detail_description = $html->find("div[class=journal-content-article]", 0)->innertext;
-	    $detail_description = preg_replace('/[\/]documents[\/]/','https://www.hust.edu.vn/documents/',$detail_description);
-	    $tag = '<audio controls> <source alt="Audio" src="" /> </audio>';
-	    $detail_description = str_replace($tag,'',$detail_description);
-
-	    $admin_id = $_SESSION['admin_id'];
-	    $post->admin_id($admin_id);
-		$post->image($image);
-		$post->title($title);
-		$post->description($description);
-		$post->category($category);
-		$post->detail_description(trim($detail_description));
-		// add post
-		$post->add_hust();
-		http_response_code(200);
-		echo json_encode(array('code' => 200));
 	}
-		
+	http_response_code(200);
+	echo json_encode(array('code' => 200));
+	
 	    
 ?>
