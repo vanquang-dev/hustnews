@@ -25,7 +25,7 @@
 			</div>
 			<div class="main-post" style="margin: 0;">
 				<h2>Danh sách thành viên</h2>
-				<table id="editor"></table>
+				<table id="editor" style="width: 100%;"></table>
 			</div>
 			
 			<?php include_once 'component/footer.php'; ?>
