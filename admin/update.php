@@ -10,11 +10,9 @@
   <head>
   <meta charset="UTF-8">
   <?php head('Update | BK News') ?>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
   </head>
   <body>
   	<div class="container">
@@ -38,128 +36,18 @@
 			<div class="form-group image_summernote">
 				<div id="summernote"></div>
 			</div>
-
+			<input type="hidden" id="post_id" value="<?php echo $id; ?>">
 			<button type="button" id="submit" class="btn btn-primary">Lưu</button>
 		</form>
 			<?php include_once 'component/footer.php'; ?>
 			
 		</div>
 	</div>
-    <script>
-    	$(document).ready(function() {
-		    $('#summernote').summernote({
-		        placeholder: 'Chi tiết bài viết ',
-		        height: 500,
-		        minHeight: null,
-		        maxHeight: null,
-		        focus: true,
-		        callbacks: {
-		            onImageUpload: function(files)
-		            {
-		                for(var i = 0; i < files.length; i++)
-		                {
-		                    upFile(files[i]);
-		                }
-		            }
-		        }
-		    });
-		});
-    	function upFile(file) {
-		    if(file.type.includes('image')) {
-		        var name = file.name.split(".");
-		        name = name[0];  
-		        var data = new FormData();
-		        data.append('file', file);
-		        $.ajax({
-		            url: '../api/post/upload_images.php',
-		            type: 'POST',
-		            contentType: false,
-		            cache: false,
-		            processData: false,
-		            dataType: 'JSON',
-		            data: data,
-		            success: function (response) 
-		            {
-		                if(response.is_ok)
-		                {
-		                    $('#summernote').summernote('insertImage', response.url, name);
-		                }
-		                else
-		                {
-		                    console.log(response.error);
-		                }
-		            }
-		        })
-		        .fail(function(e) {
-		            console.log(e);
-		        });
-		    } else {
-		        console.log("Đừng cố tải cái gì lên khác ngoài ảnh :>");
-		    }
-		}
-    	function get_post() {
-    		data = { id: <?php echo $id; ?> };
-			$.ajax({
-				url: '../api/post/read_update.php',
-				type: 'POST',
-				dataType: 'json',
-				data: data
-			})
-			.done(function(data) {
-				$('#title').val(data.result.title);
-				$('#description').val(data.result.description);
-				$('.box-pre-img').removeClass('display');
-				$('.box-pre-img').append('<img src="' + data.result.image + '" style="width: 150px;">');
-				$('#summernote').summernote('code', data.result.detail_description);
-			})
-			.fail(function (error) {
-	        })
-    	}
-		get_post();
-    </script>
-    <script>
-    	
-		$('#submit').click(() => {
-			
-			var title = $('#title').val();
-			var description = $('#description').val();
-			var detail_description = $('#summernote').summernote('code');
-			data = {id: <?php echo $id; ?>, title: title, description: description, detail_description: detail_description}
 
-			$.ajax({
-				url: '../api/post/update.php',
-				type: 'POST',
-				dataType: 'json',
-				data: data
-			})
-			.done(function(data) {
-				location.replace("post.php");
-			})
-			.fail(function (error) {
-	        })
-		})
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-		$('#image').change(function(){
-		    img_up = $('#image').val();
-		    count_img_up = $('#image').get(0).files.length;
-		    $(".box-pre-img").children().remove();
-		 
-		    // Nếu đã chọn ảnh
-		    if (img_up != '')
-		    {
-		        $('.box-pre-img').removeClass('display');
-		        for (i = 0; i <= count_img_up - 1; i++)
-		        {
-		            $('.box-pre-img').append('<img src="' + URL.createObjectURL(event.target.files[i]) + '" style="width: 150px;">');
-		        }
-		    } 
-		    // Ngược lại chưa chọn ảnh
-		    else
-		    {
-		        $('.box-pre-img').html('');
-		    }
-		});
-	    	
-    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+	<script src="../views/assets/js/admin/update.js"></script>
   </body>
 </html>

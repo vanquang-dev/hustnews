@@ -588,7 +588,6 @@ li.category {
 }
 .main-post {
     margin: -60px 30px 0;
-    z-index: 2;
     position: relative;
     border-radius: 6px;
     padding: 30px 60px;
@@ -866,4 +865,21 @@ div#detail span {
 }
 .image_summernote img {
     width: 100%;
+}
+.image_summernote video {
+    width: 100%;
+}
+.button-create {
+    border-radius: 0;
+    width: 90px;
+    padding: 10px 15px;
+    margin-left: -4px;
+    background: #a8a8a8;
+    font-size: 14px;
+    color: #fff;
+    border: none;
+    outline: none;
+}
+.button-create.ok {
+    background: linear-gradient(90deg, rgb(39 48 143) 0%, rgb(35 73 104) 100%);
 }
