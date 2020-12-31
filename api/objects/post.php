@@ -61,7 +61,6 @@ class Post extends Database
 
 
   public function add() {
-    // query
     $query = "INSERT INTO `post` (
     `admin_id`, `title`, `description`, `category`, `detail_description`, `image`
     ) VALUES (
@@ -76,7 +75,6 @@ class Post extends Database
   }
 
   public function add_post() {
-    // query
     $query = "INSERT INTO `post` (
     `admin_id`, `title`, `description`, `category`, `detail_description`, `image`
     ) VALUES (
@@ -91,7 +89,6 @@ class Post extends Database
   }
 
   public function add_category() {
-    // query
     $query = "INSERT INTO `category` (
     `name_category`
     ) VALUES (
@@ -101,14 +98,12 @@ class Post extends Database
   }
 
   public function get_id_product() {
-    // query
     $query = "SELECT `id` FROM `product` WHERE `date` = '".$this->date."' AND `name_product` = '".$this->name_product."' AND `id_user` = '".$this->id_user."'";
     $query_attachment = mysqli_query($this->get_connection(), $query);
     $row = mysqli_fetch_array($query_attachment);
     return $row['id'];
   }
 
-  // get post first
   public function get_post_new()
   {
     $query = "SELECT * FROM `post` ORDER BY `post_id` DESC LIMIT 3";
@@ -146,7 +141,6 @@ class Post extends Database
   }
 
 
-  // get detail post
   public function get_post_popular()
   {
     $query = "SELECT `like`.`post_id`, `title`, COUNT(*) AS `total` FROM `like` JOIN `post` ON `like`.`post_id` = `post`.`post_id` GROUP BY `like`.`post_id` ORDER BY `total` DESC LIMIT 10";

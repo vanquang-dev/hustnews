@@ -31,7 +31,7 @@
                     <div id="create_1">
                         <h3>Các bài báo mới nhất của Dân Trí</h3>
                         <div id="dantri" style="height: 476px; overflow-y: auto;">
-                            <?php include_once 'model/dantri.php'; ?>
+                            <?php include_once 'crawl/dantri.php'; ?>
                         </div>
                     </div>
 
